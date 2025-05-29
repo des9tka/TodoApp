@@ -1,0 +1,16 @@
+.sortable-ghost {
+    opacity: 0.5;
+    background: rgba(59, 130, 246, 0.3);
+    transform: scale(0.95);
+}
+
+.sortable-chosen {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.sortable-drag {
+    transform: rotate(3deg);
+    transition: transform 0.2s ease;
+}

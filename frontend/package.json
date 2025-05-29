@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.77.2",
+    "@types/js-cookie": "^3.0.6",
+    "axios": "^1.9.0",
+    "js-cookie": "^3.0.5",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sortablejs": "^1.15.6"
+    "sortablejs": "^1.15.6",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

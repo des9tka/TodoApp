@@ -1,6 +1,34 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
+import { useAuthStore } from "../../store";
 
 function SignUp() {
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
+    const { register } = useAuthStore();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError(null);
+
+        try {
+            await register({
+                email,
+                username,
+                password,
+            });
+
+            window.location.href = "/dashboard";
+        } catch (err) {
+            setError(
+                err instanceof Error ? err.message : "Registration failed",
+            );
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center">
             <div className="flex flex-col justify-center items-center px-6 py-12 lg:px-8 w-full">
@@ -11,10 +39,16 @@ function SignUp() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    {error && (
+                        <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
+                            {error}
+                        </div>
+                    )}
+
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-sm/6 font-medium text-white">
-                                Email address
+                                Email
                             </label>
                             <div className="mt-2">
                                 <input
@@ -22,6 +56,27 @@ function SignUp() {
                                     name="email"
                                     id="email"
                                     required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm/6 font-medium text-white">
+                                Username
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    required
+                                    value={username}
+                                    onChange={(e) =>
+                                        setUsername(e.target.value)
+                                    }
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
                                 />
                             </div>
@@ -39,6 +94,10 @@ function SignUp() {
                                     name="password"
                                     id="password"
                                     required
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sky-600 sm:text-sm/6"
                                 />
                             </div>

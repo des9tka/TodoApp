@@ -1,4 +1,3 @@
-import QueryProvider from "@/query/QueryProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -28,7 +27,7 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-900 via-slate-800 to-sky-500`}
             >
-                <QueryProvider>{children}</QueryProvider>
+                {children}
             </body>
         </html>
     );

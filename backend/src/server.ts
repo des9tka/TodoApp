@@ -1,4 +1,5 @@
 import cookieParser from "cookie-parser";
+import cors from "cors"; // Импортируем cors
 import express, { NextFunction, Request, Response } from "express";
 
 import authRouter from "./auth/routers";
@@ -7,6 +8,13 @@ import todosRouter from "./todos/routers";
 import userRouter from "./users/routers";
 
 const app = express();
+
+app.use(
+    cors({
+        origin: "http://localhost:3000",
+        credentials: true,
+    }),
+);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -23,7 +31,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 async function main() {
     try {
         await connectDb();
-        app.listen(3000, () => {
+        app.listen(3001, () => {
             console.log("Connected to Server.");
         });
     } catch {

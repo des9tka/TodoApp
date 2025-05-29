@@ -13,7 +13,7 @@ const db = drizzle(pool);
 async function connectDb() {
     try {
         await pool.connect();
-        console.log("Connected to database.");
+        console.log("Connected to Supbase.");
     } catch (error) {
         console.error("Database connection error:", error);
         throw error;

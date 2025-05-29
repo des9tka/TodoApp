@@ -8,6 +8,13 @@
       "when": 1748514974694,
       "tag": "0000_third_dreadnoughts",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748523205619,
+      "tag": "0001_loose_ares",
+      "breakpoints": true
     }
   ]
 }

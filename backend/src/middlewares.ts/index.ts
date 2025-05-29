@@ -9,14 +9,14 @@ const loginMiddleware = async (
     const accessToken = req.cookies?.accessToken;
 
     if (!accessToken) {
-        return res.status(401).json({ error: "Access-токен не предоставлен." });
+        return res.status(401).json({ error: "Access token not found." });
     }
 
     const decoded = await jwtService.verifyToken(accessToken);
     if (!decoded) {
         return res
             .status(401)
-            .json({ error: "Недействительный access-токен." });
+            .json({ error: "Token is invalid or has expired." });
     }
 
     req.user = { userId: decoded.userId };

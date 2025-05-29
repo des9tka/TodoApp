@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 import { db } from "src/config/db";
 import { users } from "src/config/schema";
 import { jwtService } from "src/services/jwtService";
-import { bodyRequestHandler } from "src/utils/DataCheck";
+import { bodyRequestHandler } from "src/utils/dataCheck";
 
 const CreateUserController = async (req: Request, res: Response) => {
     bodyRequestHandler(req, res);

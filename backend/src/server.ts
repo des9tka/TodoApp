@@ -1,9 +1,10 @@
 import cookieParser from "cookie-parser";
 import express, { NextFunction, Request, Response } from "express";
 
-import authRouter from "./auth/routes";
-import todosRouter from "./todos/routers";
+import authRouter from "./auth/routers";
 import { connectDb } from "./config/db";
+import todosRouter from "./todos/routers";
+import userRouter from "./users/routers";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use("/todos", todosRouter);
+app.use("/users", userRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
@@ -22,7 +24,7 @@ async function main() {
     try {
         await connectDb();
         app.listen(3000, () => {
-            console.log("Server has starter.");
+            console.log("Connected to Server.");
         });
     } catch {
         process.exit(1);

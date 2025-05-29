@@ -25,7 +25,7 @@ export const todos = pgTable("todos", {
     userId: integer("user_id")
         .notNull()
         .references(() => users.id),
-    name: varchar("name", { length: 255 }).notNull(),
+    title: varchar("title", { length: 255 }).notNull(),
     description: text("description").notNull(),
     status: todoStatusEnum("status").notNull().default("todo"),
 });

@@ -1,7 +1,8 @@
 import cookieParser from "cookie-parser";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 
-import userRouter from "./User/routes";
+import authRouter from "./auth/routes";
+import todosRouter from "./todos/routers";
 import { connectDb } from "./config/db";
 
 const app = express();
@@ -9,7 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/users", userRouter);
+app.use("/auth", authRouter);
+app.use("/todos", todosRouter);
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error(err.stack);
+    res.status(500).send("Something happened!");
+});
 
 async function main() {
     try {

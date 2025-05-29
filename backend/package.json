@@ -28,9 +28,11 @@
     "devDependencies": {
         "@swc/core": "^1.11.29",
         "@swc/helpers": "^0.5.17",
+        "@types/bcrypt": "^5.0.2",
         "@types/connect-redis": "^0.0.23",
         "@types/cookie-parser": "^1.4.8",
         "@types/express": "^5.0.2",
+        "@types/jsonwebtoken": "^9.0.9",
         "@types/node": "^22.15.23",
         "@types/pg": "^8.15.2",
         "drizzle-kit": "^0.31.1",
